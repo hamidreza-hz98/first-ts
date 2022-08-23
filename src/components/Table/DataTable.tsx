@@ -1,17 +1,14 @@
 import { Table } from "@mui/material";
 import TableHeader from "./TableHeader";
 import TableRows from "./TableRows";
-import { FormTypes } from "../Form";
-type TableDataProps = {
-  headers: string[];
-  data: FormTypes[];
-};
 
-function DataTable({ headers, data }: TableDataProps) {
+const headers = ["name", "age", "work", "projects"];
+
+function DataTable() {
   return (
     <Table>
       <TableHeader headers={headers} />
-      <TableRows headers={headers} data={data} />
+      <TableRows headers={headers} />
     </Table>
   );
 }

@@ -11,11 +11,8 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import { useForm } from "react-hook-form";
 import DataTable from "./Table/DataTable";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  createEmployee,
-  allEmployees,
-} from "../store/employees/employeesSlice";
+import { useDispatch } from "react-redux";
+import { createEmployee } from "../store/employees/employeesSlice";
 
 export type FormTypes = {
   name: string;
@@ -27,7 +24,6 @@ export type FormTypes = {
 
 function Form() {
   const dispatch = useDispatch();
-  const employees = useSelector(allEmployees);
   const [projects, setProjects] = useState<string[]>([]);
   const defaultValues: FormTypes = {
     name: "",
@@ -40,9 +36,7 @@ function Form() {
   const { register, handleSubmit, setValue } = useForm({ defaultValues });
 
   const submitForm = (data: FormTypes) => {
-    data.id = uuidv4();
-    dispatch(createEmployee(data));
-    console.log(employees);
+    dispatch(createEmployee({ ...data, id: uuidv4() }));
   };
 
   const addProject = (e: SelectChangeEvent<typeof projects>) => {
@@ -53,8 +47,6 @@ function Form() {
     setProjects(typeof value === "string" ? value.split(",") : value);
     setValue("projects", typeof value === "string" ? value.split(",") : value);
   };
-
-  const headers = ["name", "age", "work", "projects"];
 
   return (
     <>
@@ -102,7 +94,7 @@ function Form() {
           </Grid>
         </Grid>
       </form>
-      <DataTable headers={headers} data={employees} />
+      <DataTable />
     </>
   );
 }

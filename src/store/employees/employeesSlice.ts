@@ -1,13 +1,6 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "..";
 
-// interface Employee {
-//   name: string;
-//   age: number | null;
-//   work?: string;
-//   projects: string[];
-// }
-
 const employeeAdapter = createEntityAdapter();
 
 const { selectAll } = employeeAdapter.getSelectors(

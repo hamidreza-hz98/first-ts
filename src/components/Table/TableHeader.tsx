@@ -1,5 +1,4 @@
 import { TableCell, TableHead, TableRow } from "@mui/material";
-import React from "react";
 
 type TableHeadProps = {
   headers: string[];
@@ -10,7 +9,7 @@ function TableHeader({ headers }: TableHeadProps) {
     <TableHead>
       <TableRow>
         {headers.map((item) => {
-          return <TableCell>{item}</TableCell>;
+          return <TableCell key={item}>{item}</TableCell>;
         })}
       </TableRow>
     </TableHead>
